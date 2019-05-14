@@ -1,7 +1,5 @@
 package astar;
 
-//import java.util.*;
-
 public class Edge {
 	private double weight;
 	private Node vertex;

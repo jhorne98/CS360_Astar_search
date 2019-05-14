@@ -1,7 +1,6 @@
 package astar;
 
 import java.util.*;
-//import java.io.*;
 
 // really doesn't need to be its own class, but it works
 public class AStar {

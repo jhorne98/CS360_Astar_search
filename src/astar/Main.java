@@ -3,13 +3,6 @@ package astar;
 import java.util.*;
 import java.io.*;
 
-/*class SortNodes implements Comparator<Node> {
-	@Override
-	public int compare(Node l, Node r) {
-		return Double.compare(l.getF(), r.getF());
-	}
-}*/
-
 public class Main {
 	public static final boolean DEBUG = true;
 	
