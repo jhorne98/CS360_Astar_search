@@ -14,6 +14,7 @@ public class Node {
 	private String name;
 	
 	private int block;
+	private boolean checked;
 	
 	public Node() {
 		f = Double.MAX_VALUE;
@@ -61,6 +62,10 @@ public class Node {
 		return block;
 	}
 	
+	public boolean getChecked() {
+		return checked;
+	}
+	
 	// setters
 	public void setF(double f) {
 		this.f = f;
@@ -84,6 +89,10 @@ public class Node {
 	
 	public void setBlock(int block) {
 		this.block = block;
+	}
+	
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 	
 	// add a neighbor

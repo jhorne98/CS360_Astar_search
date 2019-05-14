@@ -11,7 +11,7 @@ import java.io.*;
 }*/
 
 public class Main {
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	
 	public static void main(String[] args) {
 		ArrayList<Node> traceList = new ArrayList<Node>();
@@ -26,23 +26,23 @@ public class Main {
 		LambdaHeuristic dijkstra = (i, j, endRow, endCol) -> {return 0.0;};
 		
 		// load information from file
-		File file = new File("src/astar/test.txt");
+		File file = new File("src/astar/obstacle.txt");
 		
 		AStar as = new AStar();
 		ArrayList<Node> graph;
 		
 		// benchmarking by size of map, density of map
-		for (int size = 1; size < 151; size++) {
+		//for (int size = 1; size < 151; size++) {
 			//for (int density = 0; density <= 20; density+=10) {
-			//int size = 10;
+			int size = 10;
 			int density = 40;
 		
 				try {
 					Scanner sc = new Scanner(file);
 					
 					// load graph with given heuristic
-					//graph = as.loadGraph(sc, 0, 12, euclidean);
-					graph = as.loadGraphRandom(size, size, 0, size - 1, density, euclidean);
+					graph = as.loadGraph(sc, 0, size, euclidean);
+					//graph = as.loadGraphRandom(size, size, 0, size - 1, density, euclidean);
 				
 					//graph.get((12 - 1) * 12).setF(graph.get((12 - 1) * 12).getH());
 					graph.get((size - 1) * size).setF(graph.get((size - 1) * size).getH());
@@ -61,11 +61,12 @@ public class Main {
 					long end = System.nanoTime();
 					
 					// get the path back from traceList
-					/*Collections.reverse(traceList);
+					Collections.reverse(traceList);
 					for (Node n : traceList) {
 						System.out.print(n.getName() + "->");
-					}*/
+					}
 					
+					System.out.print("\u001b[0m");
 					if (DEBUG) {
 						System.out.println("end\nSize: " + size + "^2");
 						System.out.println("Density: " + density);
@@ -79,8 +80,15 @@ public class Main {
 					if (DEBUG) {
 						for (Node n : graph) {
 							if (traceList.contains(n)) {
+								System.out.print("\u001b[0m");
 								System.out.print("X");
 							} else {
+								// colored output based on if the node has been evaled
+								if (n.getChecked() == true) {
+									System.out.print("\u001b[1;91m");
+								} else {
+									System.out.print("\u001b[0m");
+								}
 								System.out.print(n.getBlock());
 							}
 							
@@ -99,6 +107,6 @@ public class Main {
 					System.gc();
 				}
 			//}
-		}
+		//}
 	}
 }

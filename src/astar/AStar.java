@@ -84,7 +84,7 @@ public class AStar {
 					}
 				}
 				
-				// Manhattan: only nsew
+				// TODO: Manhattan: only nsew
 				/*if (i >= 1 && i < rows - 1 &&
 					graph.get(index).getBlock() != 1) {
 					
@@ -106,6 +106,7 @@ public class AStar {
 			}
 		}
 		
+		// TODO: Fix this
 		// start and end always open
 		graph.get(cols - 1).setBlock(0);
 		graph.get((rows - 1) * cols).setBlock(0);
@@ -286,6 +287,7 @@ public class AStar {
 				// if neighbor is not in the openSet, push it on
 				// else if temp g >= neighbor's g, done with neighbor
 				if (!openSet.contains(e.getVertex())) {
+					e.getVertex().setChecked(true);
 					openSet.add(e.getVertex());
 				} else if (tempGScore >= e.getVertex().getG()) {
 					continue;
